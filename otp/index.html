@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Testing the News Web Component</title>
+  <base href="/">
+  <script src="polyfills.js" type="module"></script>
+  <script src="main.js" type="module"></script>
+</head>
+<body>
+<div>
+  <otp-web-component email="test1234@test.com" phone="142362178"></otp-web-component>
+</div>
+<br>
+<div>
+  <span>Email: <input id="email" type="email" placeholder="Email"></span>
+  <span>Phone: <input id="phone" type="tel" placeholder="Phone"></span>
+  <button id="button">Transfer</button>
+</div>
+</body>
+<script>
+  const otpWebComponent = document.querySelector("otp-web-component");
+  const email = document.getElementById('email');
+  const phone = document.getElementById('phone');
+  const button = document.getElementById('button');
+  document.addEventListener('DOMContentLoaded', () => {
+    button.addEventListener('click', () => {
+      otpWebComponent.setAttribute('email', email.value);
+      otpWebComponent.setAttribute('phone', phone.value);
+    });
+    otpWebComponent.addEventListener('validate', ($event) => {
+      console.log($event);
+    })
+  });
+</script>
+</html>
